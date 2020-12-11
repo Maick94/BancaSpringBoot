@@ -6,7 +6,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import java.util.List;
 import java.io.Serializable;
@@ -17,8 +16,8 @@ import javax.persistence.OneToOne;
 
 @Entity
 @Table(name = "conto")
-public class Conto implements Serializable{
-
+public class Conto{
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idconto")
@@ -32,6 +31,9 @@ public class Conto implements Serializable{
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "conto")
 	private Azienda azienda;
 	
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "conto")
+	private List<Deposito> depositi = new ArrayList<>();
+	
 	/*@OneToMany(mappedBy = "conto",cascade = {CascadeType.ALL})*/
 	//private List<Deposito> depositi = new ArrayList<>();
 	/*@OneToMany(mappedBy = "conto",cascade = {CascadeType.ALL})*/
@@ -41,16 +43,16 @@ public class Conto implements Serializable{
 		super();
 	}
 
-	public Conto(int idConto, String dataApertura, int saldo, Persona persona/*, Azienda azienda, List<Deposito> depositi,
+	public Conto(int idConto, String dataApertura, int saldo, Persona persona, Azienda azienda, List<Deposito> depositi/*,
 			List<Prelievo> prelievi*/) {
 		super();
 		this.idConto = idConto;
 		this.dataApertura = dataApertura;
 		this.saldo = saldo;
 		this.persona = persona;
-		/*this.azienda = azienda;
+		this.azienda = azienda;
 		this.depositi = depositi;
-		this.prelievi = prelievi;*/
+		/*this.prelievi = prelievi;*/
 	}
 	
 	public Conto(String dataApertura, int saldo) {
@@ -90,7 +92,7 @@ public class Conto implements Serializable{
 		this.persona = persona;
 	}
 
-	/*public Azienda getAzienda() {
+	public Azienda getAzienda() {
 		return azienda;
 	}
 
@@ -106,13 +108,13 @@ public class Conto implements Serializable{
 		this.depositi = depositi;
 	}
 
-	public List<Prelievo> getPrelievi() {
+	/*public List<Prelievo> getPrelievi() {
 		return prelievi;
 	}
 
 	public void setPrelievi(List<Prelievo> prelievi) {
 		this.prelievi = prelievi;
-	}
+	}*/
 	
 	public void add(Deposito deposito) {
 		if(depositi == null) {
@@ -123,7 +125,7 @@ public class Conto implements Serializable{
 		deposito.setConto(this);
 	}
 	
-	public void add(Prelievo prelievo) {
+	/*public void add(Prelievo prelievo) {
 		if(prelievi == null) {
 			prelievi= new ArrayList<Prelievo>();
 		}

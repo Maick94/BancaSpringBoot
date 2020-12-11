@@ -2,6 +2,7 @@ package it.begear.banca.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -18,6 +19,7 @@ import it.begear.banca.entity.Conto;
 import it.begear.banca.entity.Persona;
 import it.begear.banca.service.AziendaService;
 import it.begear.banca.service.ContoService;
+import it.begear.banca.service.DepositoService;
 import it.begear.banca.service.PersonaService;
 
 
@@ -31,6 +33,8 @@ public class AppController {
     ContoService contoService;
 	@Autowired
     AziendaService aziendaService;
+	@Autowired
+    DepositoService depositoService;
 	
 	
 	@RequestMapping("/")
@@ -70,6 +74,14 @@ public class AppController {
 		azienda.setConto(conto);
 		aziendaService.saveAzienda(azienda);
 		return "redirect:/";
+	}
+	
+	@RequestMapping("/deposito_azienda")
+	public String depositoAzienda(Model model, @Param("keyword") String keyword) {
+		Azienda azienda= aziendaService.getAziendaByPIva(keyword);
+		model.addAttribute("azienda", azienda);
+		model.addAttribute("keyword", keyword);
+		return "deposito_conto_aziendale";
 	}
 	
 	

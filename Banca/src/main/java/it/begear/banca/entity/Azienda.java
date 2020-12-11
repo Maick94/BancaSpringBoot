@@ -1,6 +1,6 @@
 package it.begear.banca.entity;
 
-import java.io.Serializable;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "azienda")
-public class Azienda implements Serializable{
+public class Azienda{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idazienda")

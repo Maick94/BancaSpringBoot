@@ -19,7 +19,7 @@ import javax.persistence.OneToOne;
 
 @Entity
 @Table(name = "persona")
-public class Persona implements Serializable{
+public class Persona {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name ="idpersona")

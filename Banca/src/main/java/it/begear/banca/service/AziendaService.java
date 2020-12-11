@@ -13,6 +13,13 @@ public class AziendaService {
 	
 	@Autowired
 	private AziendaRepository aziendaRepository; 
+	
+	public Azienda getAziendaByPIva(String keyword) {
+		/*if(keyword != null)*/
+		       return aziendaRepository.searchPIva(keyword);
+		/*else
+			return aziendaRepository.findAll();*/
+    }
 
 	
 	public List<Azienda> getAllList() {
@@ -31,6 +38,8 @@ public class AziendaService {
 	public void deleteAzienda(int id) {
 		aziendaRepository.deleteById(id);
 	}
+	
+	
 }
 
 
