@@ -1,0 +1,62 @@
+CREATE DATABASE `progetto`;
+
+-- progetto.azienda definition
+
+CREATE TABLE `azienda` (
+  `idazienda` int NOT NULL AUTO_INCREMENT,
+  `piva` varchar(100) DEFAULT NULL,
+  `ragionesociale` varchar(100) DEFAULT NULL,
+  `idconto` int DEFAULT NULL,
+  PRIMARY KEY (`idazienda`),
+  KEY `azienda_FK` (`idconto`),
+  CONSTRAINT `azienda_FK` FOREIGN KEY (`idconto`) REFERENCES `conto` (`idconto`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- progetto.conto definition
+
+CREATE TABLE `conto` (
+  `idconto` int NOT NULL AUTO_INCREMENT,
+  `dataapertura` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `saldo` int DEFAULT NULL,
+  PRIMARY KEY (`idconto`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- progetto.deposito definition
+
+CREATE TABLE `deposito` (
+  `iddeposito` int NOT NULL AUTO_INCREMENT,
+  `quantita` int DEFAULT NULL,
+  `data` varchar(100) DEFAULT NULL,
+  `totale` int DEFAULT NULL,
+  `idconto` int DEFAULT NULL,
+  PRIMARY KEY (`iddeposito`),
+  KEY `deposito_FK` (`idconto`),
+  CONSTRAINT `deposito_FK` FOREIGN KEY (`idconto`) REFERENCES `conto` (`idconto`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- progetto.persona definition
+
+CREATE TABLE `persona` (
+  `idpersona` int NOT NULL AUTO_INCREMENT,
+  `cf` varchar(100) DEFAULT NULL,
+  `nome` varchar(100) DEFAULT NULL,
+  `cognome` varchar(100) DEFAULT NULL,
+  `datanascita` varchar(100) DEFAULT NULL,
+  `idconto` int DEFAULT NULL,
+  PRIMARY KEY (`idpersona`),
+  KEY `persona_FK` (`idconto`),
+  CONSTRAINT `persona_FK` FOREIGN KEY (`idconto`) REFERENCES `conto` (`idconto`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- progetto.prelievo definition
+
+CREATE TABLE `prelievo` (
+  `idprelievo` int NOT NULL AUTO_INCREMENT,
+  `quantita` int DEFAULT NULL,
+  `data` varchar(100) DEFAULT NULL,
+  `totale` int DEFAULT NULL,
+  `idconto` int DEFAULT NULL,
+  PRIMARY KEY (`idprelievo`),
+  KEY `prelievo_FK` (`idconto`),
+  CONSTRAINT `prelievo_FK` FOREIGN KEY (`idconto`) REFERENCES `conto` (`idconto`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
