@@ -4,10 +4,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.mapping.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,16 +18,20 @@ import org.springframework.web.servlet.ModelAndView;
 
 import it.begear.banca.entity.Azienda;
 import it.begear.banca.entity.Conto;
+import it.begear.banca.entity.Deposito;
 import it.begear.banca.entity.Persona;
+import it.begear.banca.entity.Prelievo;
 import it.begear.banca.service.AziendaService;
 import it.begear.banca.service.ContoService;
 import it.begear.banca.service.DepositoService;
 import it.begear.banca.service.PersonaService;
+import it.begear.banca.service.PrelievoService;
 
 
 
 @Controller
 public class AppController {
+	
 
 	@Autowired
 	PersonaService personaService;
@@ -35,6 +41,8 @@ public class AppController {
     AziendaService aziendaService;
 	@Autowired
     DepositoService depositoService;
+	@Autowired
+    PrelievoService prelievoService;
 	
 	
 	@RequestMapping("/")
@@ -67,7 +75,7 @@ public class AppController {
 	}
 	
 	@RequestMapping(value = "/save_azienda", method = RequestMethod.POST)
-	public String savePersona(@ModelAttribute("azienda") Azienda azienda) {
+	public String saveAzienda(@ModelAttribute("azienda") Azienda azienda) {
         String dataApertura= currentDate();
 		Conto conto= new Conto(dataApertura,0);
 		contoService.saveConto(conto);
@@ -76,7 +84,49 @@ public class AppController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping("/deposito_azienda")
+	
+	
+	
+	
+	
+	@RequestMapping(value = "/deposito_persona", method=RequestMethod.GET)
+	public String depositoPersona(Model model, @Param("keyword") String keyword) {
+		Persona persona= personaService.getPersonaByCF(keyword);
+		model.addAttribute("persona", persona);
+		model.addAttribute("keyword", keyword);
+		return "deposito_conto_persona";
+	}
+	
+	
+	
+	
+	@RequestMapping(value = "/inserimento_deposito_persona", method = RequestMethod.POST)
+	public String addDepositoPersona(Model model, @ModelAttribute("persona") Persona persona, @Param("importo") Integer importo){
+		 
+		  /*questo metodo può essere diviso in sottometodi*/
+		  String dataDeposito= currentDate();
+		  Conto c=persona.getConto();
+		  int importoTotale=c.getSaldo()+importo;
+		  
+		  Deposito d=new Deposito(importo,dataDeposito,importoTotale,c);
+		  
+		  depositoService.saveDeposito(d);  //inserisco la tupla deposito
+		  c.add(d);
+		  contoService.saveConto(c);
+		  
+		  model.addAttribute("importo", importo);
+		  
+		  c.setSaldo(importoTotale); //update conto
+		  contoService.saveConto(c);
+	      return "redirect:/";
+	}
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value = "/deposito_azienda", method=RequestMethod.GET)
 	public String depositoAzienda(Model model, @Param("keyword") String keyword) {
 		Azienda azienda= aziendaService.getAziendaByPIva(keyword);
 		model.addAttribute("azienda", azienda);
@@ -87,20 +137,122 @@ public class AppController {
 	
 	
 	
-	/*@RequestMapping("/edit/{id}")
-	public ModelAndView showEditNewPersona(@PathVariable(name = "id") String id ) {
-		ModelAndView mav= new ModelAndView("edit_persona");
-		Persona persona=personaService.getPersona(id);
-		mav.addObject("persona", persona);
-		return mav;
-	}*/
+	@RequestMapping(value = "/inserimento_deposito_azienda", method = RequestMethod.POST)
+	public String addDepositoAzienda(Model model, @ModelAttribute("azienda") Azienda azienda, @Param("importo") Integer importo){
+		 
+		  /*questo metodo può essere diviso in sottometodi*/
+		  String dataDeposito= currentDate();
+		  Conto c=azienda.getConto();
+		  int importoTotale=c.getSaldo()+importo;
+		  
+		  Deposito d=new Deposito(importo,dataDeposito,importoTotale,c);
+		  
+		  depositoService.saveDeposito(d);  //inserisco la tupla deposito
+		  c.add(d);
+		  contoService.saveConto(c);
+		  
+		  model.addAttribute("importo", importo);
+		  
+		  c.setSaldo(importoTotale); //update conto
+		  contoService.saveConto(c);
+	      return "redirect:/";
+	}
 	
 	
-	/*@RequestMapping("/delete/{id}")
-	public String deletePersona(@PathVariable(name = "id") int id) {
-		personaService.delete(id);
-		return "redirect:/";
-	}*/
+	
+	
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value = "/prelievo_persona", method=RequestMethod.GET)
+	public String prelievoPersona(Model model, @Param("keyword") String keyword) {
+		Persona persona= personaService.getPersonaByCF(keyword);
+		Double val=null;
+		if (persona!=null) {
+			val=contoService.getMedia(persona.getConto().getIdConto());
+			val=val*30/100;
+		}
+		model.addAttribute("val", val);
+		model.addAttribute("persona", persona);
+		model.addAttribute("keyword", keyword);
+		return "prelievo_conto_personale";
+	}
+	
+	
+	
+	
+	@RequestMapping(value = "/inserimento_prelievo_persona", method = RequestMethod.POST)
+	public String addPrelievoPersona(Model model, @ModelAttribute("persona") Persona persona, @Param("importo") Integer importo){
+		 
+		
+		
+		  String dataPrelievo= currentDate();
+		  Conto c=persona.getConto();
+		  int importoTotale=c.getSaldo()-importo;
+		  
+		  Prelievo p=new Prelievo(importo,dataPrelievo,importoTotale,c);
+		  
+		  prelievoService.savePrelievo(p);  
+		  c.add(p);
+		  contoService.saveConto(c);
+		  
+		  model.addAttribute("importo", importo);
+		  
+		  c.setSaldo(importoTotale); //update conto
+		  contoService.saveConto(c);
+	      return "redirect:/";
+	}
+	
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value = "/prelievo_azienda", method=RequestMethod.GET)
+	public String prelievoAzienda(Model model, @Param("keyword") String keyword) {
+		Azienda azienda= aziendaService.getAziendaByPIva(keyword);
+		model.addAttribute("azienda", azienda);
+		model.addAttribute("keyword", keyword);
+		return "prelievo_conto_aziendale";
+	}
+	
+	
+	
+	
+	@RequestMapping(value = "/inserimento_prelievo_azienda", method = RequestMethod.POST)
+	public String addPrelievoAzienda(Model model, @ModelAttribute("azienda") Azienda azienda, @Param("importo") Integer importo){
+		 
+		  /*questo metodo può essere diviso in sottometodi*/
+		  String dataPrelievo= currentDate();
+		  Conto c=azienda.getConto();
+		  int importoTotale=c.getSaldo()-importo;
+		  
+		  Prelievo p=new Prelievo(importo,dataPrelievo,importoTotale,c);
+		  
+		  prelievoService.savePrelievo(p);  
+		  c.add(p);
+		  contoService.saveConto(c);
+		  
+		  model.addAttribute("importo", importo);
+		  
+		  c.setSaldo(importoTotale); //update conto
+		  contoService.saveConto(c);
+	      return "redirect:/";
+	}
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
 	
 	
 	public String currentDate() {

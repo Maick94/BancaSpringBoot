@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.begear.banca.entity.Azienda;
 import it.begear.banca.entity.Persona;
 import it.begear.banca.repository.PersonaRepository;
 
@@ -16,7 +17,10 @@ public class PersonaService {
 	
 	@Autowired
 	private PersonaRepository personaRepository; 
-
+	
+	public Persona getPersonaByCF(String keyword) {
+	       return personaRepository.searchCF(keyword);
+    }
 	
 	public List<Persona> getAllList() {
 		return personaRepository.findAll();

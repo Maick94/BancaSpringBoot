@@ -3,7 +3,6 @@ package it.begear.banca.entity;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,13 +11,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "deposito")
-public class Deposito {
+@Table(name = "prelievo")
+public class Prelievo {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "iddeposito")
-	private String idDeposito;
+	@Column(name = "idprelievo")
+	private String idPrelievo;
 	@Column(name = "quantita")
 	private int quantita;
 	@Column(name = "data")
@@ -30,51 +29,47 @@ public class Deposito {
 	@JoinColumn(name = "idconto")
 	private Conto conto;
 	
-
 	
-	public Deposito() {
+	public Prelievo() {
 		super();
 	}
 
 	
 
-	public Deposito(String idDeposito, int quantita, String data, int totale, Conto conto) {
+	public Prelievo(String idPrelievo, int quantita, String data, int totale, Conto conto) {
 		super();
-		this.idDeposito = idDeposito;
+		this.idPrelievo = idPrelievo;
 		this.quantita = quantita;
 		this.data = data;
 		this.totale = totale;
 		this.conto = conto;
 	}
 	
-	public Deposito(String idDeposito, int quantita, String data, int totale) {
+	
+	public Prelievo(String idPrelievo, int quantita, String data, int totale) {
 		super();
-		this.idDeposito = idDeposito;
+		this.idPrelievo = idPrelievo;
 		this.quantita = quantita;
 		this.data = data;
 		this.totale = totale;
 	}
 	
-
-	
-	
-	
-	public Deposito(int quantita, String data, int totale, Conto conto) {
+	public Prelievo(int quantita, String data, int totale, Conto conto) {
 		super();
 		this.quantita = quantita;
 		this.data = data;
 		this.totale = totale;
 		this.conto = conto;
 	}
-
-
-
-	public String getIdDeposito() {
-		return idDeposito;
+	
+	
+	public String getIdPrelievo() {
+		return idPrelievo;
 	}
 
-	public void setIdDeposito(String idDeposito) {
-		this.idDeposito = idDeposito;
+
+	public void setIdPrelievo(String idPrelievo) {
+		this.idPrelievo = idPrelievo;
 	}
 
 
@@ -110,4 +105,6 @@ public class Deposito {
 	public void setConto(Conto conto) {
 		this.conto = conto;
 	}
+	
+	
 }

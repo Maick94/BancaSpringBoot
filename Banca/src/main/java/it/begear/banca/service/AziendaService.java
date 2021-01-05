@@ -15,13 +15,9 @@ public class AziendaService {
 	private AziendaRepository aziendaRepository; 
 	
 	public Azienda getAziendaByPIva(String keyword) {
-		/*if(keyword != null)*/
 		       return aziendaRepository.searchPIva(keyword);
-		/*else
-			return aziendaRepository.findAll();*/
     }
 
-	
 	public List<Azienda> getAllList() {
 		return aziendaRepository.findAll();
 	}

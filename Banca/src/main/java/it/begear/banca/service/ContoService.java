@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.begear.banca.entity.Conto;
+import it.begear.banca.entity.Persona;
 import it.begear.banca.repository.ContoRepository;
 
 @Service
@@ -31,4 +32,8 @@ public class ContoService {
 	public void deleteConto(int id) {
 		contoRepository.deleteById(id);
 	}
+	
+	public Double getMedia(int id) {
+	       return contoRepository.getMediaQuantitaContoPersona(id);
+    }
 }

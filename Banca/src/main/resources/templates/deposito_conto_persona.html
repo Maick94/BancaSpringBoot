@@ -7,9 +7,9 @@
 </head>
  <body>
 	<div align="center">
-		<h1>Deposito Aziendale</h1>
-		<form th:action="@{/deposito_azienda}" method="get">
-			    Immetti la tua partita Iva: <input type="text" name="keyword"
+		<h1>Deposito Persona</h1>
+		<form th:action="@{/deposito_persona}" method="get">
+			    Immetti il tuo codice fiscale: <input type="text" name="keyword"
 				id="keyword" size="50" th:value="${keyword}" required /> 
 				&nbsp; 
 				<input type="submit" value="Search" /> 
@@ -19,15 +19,19 @@
 		<table border="2">
 			<thead>
 				<tr>
-					<th>Azienda ID</th>
-					<th>Partita Iva</th>
-					<th>Ragione Sociale</th>
+					<th>Persona ID</th>
+					<th>Codice Fiscale</th>
+					<th>Nome</th>
+					<th>Cognome</th>
+					<th>Data di Nascita</th>
 				</tr>
 			</thead>
-			<tr th:each="azienda : ${azienda}">
-				<td th:text="${azienda.idAzienda}"></td>
-				<td th:text="${azienda.pIva}"></td>
-				<td th:text="${azienda.ragioneSociale}"></td>
+			<tr th:each="persona : ${persona}">
+				<td th:text="${persona.idPersona}"></td>
+				<td th:text="${persona.cf}"></td>
+				<td th:text="${persona.nome}"></td>
+				<td th:text="${persona.cognome}"></td>
+				<td th:text="${persona.dataNascita}"></td>
 			</tr>
 		</table>
 
@@ -35,10 +39,12 @@
 
 
 		<br>
-		<tr th:each="azienda : ${azienda}">
-	          <td th:hidden="${azienda.idAzienda}"></td>
-			  <td th:hidden="${azienda.pIva}"></td>
-			  <td th:hidden="${azienda.ragioneSociale}"></td>
+		<tr th:each="persona : ${persona}">
+				<td th:hint="${persona.idPersona}"></td>
+				<td th:hint="${persona.cf}"></td>
+				<td th:hint="${persona.nome}"></td>
+				<td th:hint="${persona.cognome}"></td>
+				<td th:hint="${persona.dataNascita}"></td>
 
 		<script type="text/javascript">
 				function somma() {
@@ -49,7 +55,7 @@
 				}
 		</script>
 
-		<form action="#" th:action="@{/inserimento_deposito_azienda}" th:object="${azienda}" method="post">
+		<form action="#" th:action="@{/inserimento_deposito_persona}" th:object="${persona}" method="post">
 			  <input type="hidden" th:field="*{conto.idConto}" /> 
 			  <input type="hidden" th:field="*{conto.dataApertura}" />
 			  Il tuo saldo attuale: <input type="number" id="saldoTemp" th:field="*{conto.saldo}"/>

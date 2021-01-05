@@ -31,20 +31,19 @@ public class Conto{
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "conto")
 	private Azienda azienda;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "conto")
+	@OneToMany(mappedBy = "conto")
 	private List<Deposito> depositi = new ArrayList<>();
 	
-	/*@OneToMany(mappedBy = "conto",cascade = {CascadeType.ALL})*/
-	//private List<Deposito> depositi = new ArrayList<>();
-	/*@OneToMany(mappedBy = "conto",cascade = {CascadeType.ALL})*/
-	//private List<Prelievo> prelievi = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "conto")
+	private List<Prelievo> prelievi = new ArrayList<>();
 	
 	public Conto() {
 		super();
 	}
 
-	public Conto(int idConto, String dataApertura, int saldo, Persona persona, Azienda azienda, List<Deposito> depositi/*,
-			List<Prelievo> prelievi*/) {
+	public Conto(int idConto, String dataApertura, int saldo, Persona persona, Azienda azienda, List<Deposito> depositi,
+			List<Prelievo> prelievi) {
 		super();
 		this.idConto = idConto;
 		this.dataApertura = dataApertura;
@@ -52,7 +51,7 @@ public class Conto{
 		this.persona = persona;
 		this.azienda = azienda;
 		this.depositi = depositi;
-		/*this.prelievi = prelievi;*/
+		this.prelievi = prelievi;
 	}
 	
 	public Conto(String dataApertura, int saldo) {
@@ -108,13 +107,13 @@ public class Conto{
 		this.depositi = depositi;
 	}
 
-	/*public List<Prelievo> getPrelievi() {
+	public List<Prelievo> getPrelievi() {
 		return prelievi;
 	}
 
 	public void setPrelievi(List<Prelievo> prelievi) {
 		this.prelievi = prelievi;
-	}*/
+	}
 	
 	public void add(Deposito deposito) {
 		if(depositi == null) {
@@ -125,19 +124,12 @@ public class Conto{
 		deposito.setConto(this);
 	}
 	
-	/*public void add(Prelievo prelievo) {
+	public void add(Prelievo prelievo) {
 		if(prelievi == null) {
 			prelievi= new ArrayList<Prelievo>();
 		}
 		
 		prelievi.add(prelievo);
 		prelievo.setConto(this);
-	}*/
-	
-	
-	
-
-	
-	
-
+	}
 }
