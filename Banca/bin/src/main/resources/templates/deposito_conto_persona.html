@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Inserisci dati</title>
+</head>
+ <body>
+	<div align="center">
+		<h1>Deposito Persona</h1>
+		<form th:action="@{/deposito_persona}" method="get">
+			    Immetti il tuo codice fiscale: <input type="text" name="keyword"
+				id="keyword" size="50" th:value="${keyword}" required /> 
+				&nbsp; 
+				<input type="submit" value="Search" /> 
+		</form>
+		<br> 
+		<br>
+		<table border="2">
+			<thead>
+				<tr>
+					<th>Persona ID</th>
+					<th>Codice Fiscale</th>
+					<th>Nome</th>
+					<th>Cognome</th>
+					<th>Data di Nascita</th>
+				</tr>
+			</thead>
+			<tr th:each="persona : ${persona}">
+				<td th:text="${persona.idPersona}"></td>
+				<td th:text="${persona.cf}"></td>
+				<td th:text="${persona.nome}"></td>
+				<td th:text="${persona.cognome}"></td>
+				<td th:text="${persona.dataNascita}"></td>
+			</tr>
+		</table>
+
+
+
+
+		<br>
+		<tr th:each="persona : ${persona}">
+				<td th:hint="${persona.idPersona}"></td>
+				<td th:hint="${persona.cf}"></td>
+				<td th:hint="${persona.nome}"></td>
+				<td th:hint="${persona.cognome}"></td>
+				<td th:hint="${persona.dataNascita}"></td>
+
+		<script type="text/javascript">
+				function somma() {
+					var n1 = parseInt(document.getElementById('importoDeposito').value, 10);
+					var n2 = parseInt(document.getElementById('saldoTemp').value, 10);
+					var n3 =n1+n2;
+					document.getElementById('saldo').innerHTML ="Il nuovo saldo "+n3;
+				}
+		</script>
+
+		<form action="#" th:action="@{/inserimento_deposito_persona}" th:object="${persona}" method="post">
+			  <input type="hidden" th:field="*{conto.idConto}" /> 
+			  <input type="hidden" th:field="*{conto.dataApertura}" />
+			  Il tuo saldo attuale: <input type="number" id="saldoTemp" th:field="*{conto.saldo}"/>
+			  Inserisci l'importo del deposito: <input type="number" name="importo" id="importoDeposito" size="50" th:value="${importo}" required  />
+			  <p id="saldo"></p>
+			  <input type="button" value="deposita" id="btnSomma" onclick="somma()"  /> 
+			  <button type="submit">conferma</button>
+		 </form>
+		 </tr>
+ </body>
+</html>

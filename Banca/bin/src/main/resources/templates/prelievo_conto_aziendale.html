@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Inserisci dati</title>
+</head>
+ <body>
+	<div align="center">
+		<h1>Prelievo Aziendale</h1>
+		<form th:action="@{/prelievo_azienda}" method="get">
+			    Immetti la tua partita Iva: <input type="text" name="keyword"
+				id="keyword" size="50" th:value="${keyword}" required /> 
+				&nbsp; 
+				<input type="submit" value="Search" /> 
+		</form>
+		<br> 
+		<br>
+		<table border="2">
+			<thead>
+				<tr>
+					<th>Azienda ID</th>
+					<th>Partita Iva</th>
+					<th>Ragione Sociale</th>
+				</tr>
+			</thead>
+			<tr th:each="azienda : ${azienda}">
+				<td th:text="${azienda.idAzienda}"></td>
+				<td th:text="${azienda.pIva}"></td>
+				<td th:text="${azienda.ragioneSociale}"></td>
+			</tr>
+		</table>
+
+
+
+
+		<br>
+		<tr th:each="azienda : ${azienda}">
+	          <td th:hidden="${azienda.idAzienda}"></td>
+			  <td th:hidden="${azienda.pIva}"></td>
+			  <td th:hidden="${azienda.ragioneSociale}"></td>
+
+		<script type="text/javascript">
+				function addizione() {
+					var n1 = parseInt(document.getElementById('importoPrelievo').value, 10);
+					var n2 = parseInt(document.getElementById('saldoTemp').value, 10);
+					var n3 =n2-n1;
+					document.getElementById('saldo').innerHTML ="Il nuovo saldo "+n3;
+				}
+		</script>
+
+		<form action="#" th:action="@{/inserimento_prelievo_azienda}" th:object="${azienda}" method="post">
+			  <input type="hidden" th:field="*{conto.idConto}" /> 
+			  <input type="hidden" th:field="*{conto.dataApertura}" />
+			  Il tuo saldo attuale: <input type="number" id="saldoTemp" th:field="*{conto.saldo}"/>
+			  Inserisci l'importo del prelievo: <input type="number" name="importo" id="importoPrelievo" size="50" th:value="${importo}" required  />
+			  <p id="saldo"></p>
+			  <input type="button" value="prelievo" id="btnAddizione" onclick="addizione()"  /> 
+			  <button type="submit">conferma</button>
+		 </form>
+		 </tr>
+ </body>
+</html>

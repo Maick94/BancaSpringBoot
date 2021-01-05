@@ -3,25 +3,27 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Banca</title>
+
+<link rel="stylesheet" media="screen" href="css/index.css" />
 </head>
 <body>
-	<h1>Benvenuto in banca</h1>
+	<div class="container">
+	<div class="card">
+			<h1>Benvenuto in banca</h1>
+	<div class="main">
+	<input type="button" id="input" value="Inserisci un nuovo conto fisico" class="button_active " style="display: block" onclick="location.href='new_conto_fisico';" />
+	
+	<input type="button" value="Inserisci un nuovo conto aziendale" class="button_active " style="display: block" onclick="location.href='new_conto_aziendale';" />
+	
+	<input type="button" value="Deposito conto persona fisica" class="button_active " style="display: block" onclick="location.href='deposito_persona';" />
+	
+	<input type="button" value="Deposito conto aziendale" class="button_active " style="display: block" onclick="location.href='deposito_azienda';" />
+
+	<input type="button" value="Prelievo conto personale" class="button_active " style="display: block" onclick="location.href='prelievo_persona';" />
+	
+	<input type="button" value="Prelievo conto aziendale" class="button_active " style="display: block" onclick="location.href='prelievo_azienda';" />
 	</div>
-	<input type="button" value="Inserisci un nuovo conto fisico" class="button_active" onclick="location.href='new_conto_fisico';" />
-	<br>
-	<br>
-	<input type="button" value="Inserisci un nuovo conto aziendale" class="button_active" onclick="location.href='new_conto_aziendale';" />
-	<br>
-	<br>
-	<input type="button" value="Deposito conto persona fisica" class="button_active" onclick="location.href='deposito_persona';" />
-	<br>
-	<br>
-	<input type="button" value="Deposito conto aziendale" class="button_active" onclick="location.href='deposito_azienda';" />
-	<br>
-	<br>
-	<input type="button" value="Prelievo conto personale" class="button_active" onclick="location.href='prelievo_persona';" />
-	<br>
-	<br>
-	<input type="button" value="Prelievo conto aziendale" class="button_active" onclick="location.href='prelievo_azienda';" />
+	</div>
+	</div>
 </body>
 </html>
