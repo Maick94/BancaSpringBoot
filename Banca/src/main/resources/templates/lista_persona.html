@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Lista persone</title>
+
+<link rel="stylesheet" media="screen" href="css/index.css" />
+</head>
+
+ <body>
+	<style>
+		.button_active{
+			font-size: .7em !important;
+			padding: 7px 3vw !important;
+			margin: 5px 0 !important;
+		}
+		th{
+			border: 1px solid grey;
+			padding: 5px;
+		}
+
+
+	</style>
+
+	
+	<div class="container">
+		<div class="card">
+		<h1>Lista persone</h1>
+
+		<table>
+			<thead>
+				<tr>
+					<th>Persona ID</th>
+					<th>Codice Fiscale</th>
+					<th>Nome</th>
+					<th>Cognome</th>
+					<th>Data di Nascita</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="persona : ${listPersona}">
+					<td th:text="${persona.idPersona}"></td>
+					<td th:text="${persona.cf}"></td>
+					<td th:text="${persona.nome}"></td>
+					<td th:text="${persona.cognome}"></td>
+					<td th:text="${persona.dataNascita}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+
+		</div>
+	</div>
+
+ </body>
+</html>

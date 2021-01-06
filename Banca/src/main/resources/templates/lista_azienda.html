@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Lista aziende</title>
+
+<link rel="stylesheet" media="screen" href="css/index.css" />
+</head>
+
+ <body>
+	<style>
+		.button_active{
+			font-size: .7em !important;
+			padding: 7px 3vw !important;
+			margin: 5px 0 !important;
+		}
+		th{
+			border: 1px solid grey;
+			padding: 5px;
+		}
+
+
+	</style>
+
+	
+	<div class="container">
+		<div class="card">
+		<h1>Lista aziende</h1>
+
+		<table>
+			<thead>
+				<tr>
+					<th>Azienda ID</th>
+					<th>Partita Iva</th>
+					<th>Ragione Sociale</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="azienda : ${listAzienda}">
+					<td th:text="${azienda.idAzienda}"></td>
+					<td th:text="${azienda.pIva}"></td>
+					<td th:text="${azienda.ragioneSociale}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+
+		</div>
+	</div>
+
+ </body>
+</html>

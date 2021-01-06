@@ -245,8 +245,26 @@ public class AppController {
 	}
 	
 	
+
+	@RequestMapping("/lista_persona") public String listPersona(Model model) {
+		List<Persona> listPersona = personaService.getAllList();
+        model.addAttribute("listPersona", listPersona);
+        return "lista_persona";
+    }
 	
+	@RequestMapping("/lista_azienda") public String listAzienda(Model model) {
+		List<Azienda> listAzienda = aziendaService.getAllList();
+        model.addAttribute("listAzienda", listAzienda);
+        return "lista_azienda";
+    }
 	
+	@RequestMapping("/lista_movimenti") public String listMovimenti(Model model) {
+		List<Deposito> listDeposito = depositoService.getAllList();
+		List<Prelievo> listPrelievo = prelievoService.getAllList();
+        model.addAttribute("listDeposito", listDeposito);
+        model.addAttribute("listPrelievo", listPrelievo);
+        return "lista_movimenti";
+    }
 	
 	
 

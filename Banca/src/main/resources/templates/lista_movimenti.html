@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Lista movimenti</title>
+
+<link rel="stylesheet" media="screen" href="css/index.css" />
+</head>
+
+ <body>
+	<style>
+		.button_active{
+			font-size: .7em !important;
+			padding: 7px 3vw !important;
+			margin: 5px 0 !important;
+		}
+		th{
+			border: 1px solid grey;
+			padding: 5px;
+		}
+
+
+	</style>
+
+	
+	<div class="container">
+		<div class="card">
+		<h1>Lista movimenti</h1>
+
+		<table>
+			<thead>
+				<tr>
+					<th>Tipo</th>
+					<th>Quantita'</th>
+					<th>Data</th>
+					<th>Totale</th>
+					<th>Conto ID</th>
+					<th>CF</th>
+					<th>P.IVA</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="deposito : ${listDeposito}">
+					<td th:text="deposito"></td>
+					<td th:text="${deposito.quantita}"></td>
+					<td th:text="${deposito.data}"></td>
+					<td th:text="${deposito.totale}"></td>
+					<td th:text="${deposito.conto.idConto}"></td>
+					<td th:text=" ${deposito.conto.persona != null} ? ${deposito.conto.persona.cf} : '' "></td>
+					<td th:text=" ${deposito.conto.azienda != null} ? ${deposito.conto.azienda.pIva} : '' "></td>
+				</tr>
+				<tr th:each="prelievo : ${listPrelievo}">
+					<td th:text="prelievo"></td>
+					<td th:text="${prelievo.quantita}"></td>
+					<td th:text="${prelievo.data}"></td>
+					<td th:text="${prelievo.totale}"></td>
+					<td th:text="${prelievo.conto.idConto}"></td>
+					<td th:text=" ${prelievo.conto.persona != null} ? ${prelievo.conto.persona.cf} : '' "></td>
+					<td th:text=" ${prelievo.conto.azienda != null} ? ${prelievo.conto.azienda.pIva} : '' "></td>
+				</tr>
+			</tbody>
+		</table>
+
+
+		</div>
+	</div>
+
+ </body>
+</html>
