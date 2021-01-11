@@ -4,31 +4,55 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Inserisci dati</title>
+
+<link rel="stylesheet" media="screen" href="css/index.css" />
 </head>
+
 <body>
-	<div align="center">
+	<style>
+		h1{
+			margin-bottom: 10px;
+		}
+		tr{
+			display: flex;
+			flex-wrap: wrap;
+		}
+		.card{
+			height: auto !important;
+		}
+		.container{
+		margin-top: 1% !important;
+		height:auto !important;}
+		.card{
+		height:70vh !important;}
+	</style>
+
+
+
+	<div class="container">
+		<div class="card">
 		<h1>Crea Conto</h1>
 		<form action="#" th:action="@{/save_persona}" th:object="${persona}" method="post">
-				<table border="0" cellpadding=10>
+				<table cellpadding=10>
 					<tr>
 						<td>Codice fiscale:</td>
-						<td><input type="text" th:field="*{cf}" />
-						<td><br>
+						<td><input type="text" th:field="*{cf}" style="display: block" class="button_active "/>
+						<td>
 						<td>Nome:</td>
-						<td><input type="text" th:field="*{nome}" />
-						<td><br>
+						<td><input type="text" th:field="*{nome}" style="display: block" class="button_active "/>
+						<td>
 						<td>Cognome</td>
-						<td><input type="text" th:field="*{cognome}" />
-						<td><br>
+						<td><input type="text" th:field="*{cognome}" style="display: block" class="button_active "/>
+						<td>
 						<td>Data di nascita</td>
-						<td><input type="text" th:field="*{dataNascita}" />
-						<td><br>
-					<tr>
-						<td colspan="2"><button type="submit" value="clicca qui" />SALVA</td>
+						<td><input type="text" th:field="*{dataNascita}" style="display: block" class="button_active "/>
+						<td>
+						<tr>
+						<td colspan="2"><button type="submit" value="clicca qui" style="margin-left: 10vw;" class="button button_active">SALVA</button></td>
 				</table>
 				
 		</form>
-
+		</div>
 	</div>
 
 

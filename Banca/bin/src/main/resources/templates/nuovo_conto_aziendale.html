@@ -4,25 +4,51 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Inserisci dati</title>
+
+<link rel="stylesheet" media="screen" href="css/index.css" />
 </head>
+
 <body>
-	<div align="center">
+	<style>
+		.button_active{
+			font-size: .7em !important;
+			padding: 7px 3vw !important;
+			margin: 5px 0 !important;
+		}
+		th{
+			border: 1px solid grey;
+			padding: 5px;
+		}
+		h1{
+			width: 100%;
+			margin-left: 30%;
+		}
+		.card{
+			justify-content: center !important;
+			align-items: center !important;
+		}
+	</style>
+
+
+
+	<div class="container">
+		<div class="card">
 		<h1>Crea Conto</h1>
 		<form action="#" th:action="@{/save_azienda}" th:object="${azienda}" method="post">
-				<table border="0" cellpadding=10>
-					<tr>
+				<table  cellpadding=10>
+					<tr style="display: block;">
 						<td>Partita Iva:</td>
-						<td><input type="text" th:field="*{pIva}" />
+						<td style="display: block"><input type="text" th:field="*{pIva}" class="button_active"/>
 						<td><br>
 						<td>Ragione Sociale:</td>
-						<td><input type="text" th:field="*{ragioneSociale}" />
+						<td style="display: block"><input type="text" th:field="*{ragioneSociale}" class="button_active" />
 						<td><br>
 					<tr>
-						<td colspan="2"><button type="submit" value="clicca qui" />SALVA</td>
+						<td colspan="2"><button type="submit" value="clicca qui" class="button_active">SALVA</button></td>
 				</table>
 				
 		</form>
-
+	</div>
 	</div>
 
 

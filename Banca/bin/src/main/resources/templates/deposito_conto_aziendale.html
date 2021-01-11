@@ -4,19 +4,37 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Inserisci dati</title>
+
+<link rel="stylesheet" media="screen" href="css/index.css" />
 </head>
+
  <body>
-	<div align="center">
+	<style>
+		.button_active{
+			font-size: .7em !important;
+			padding: 7px 3vw !important;
+			margin: 5px 0 !important;
+		}
+		th{
+			border: 1px solid grey;
+			padding: 5px;
+		}
+
+
+	</style>
+
+
+
+	<div class="container">
+		<div class="card">
 		<h1>Deposito Aziendale</h1>
 		<form th:action="@{/deposito_azienda}" method="get">
-			    Immetti la tua partita Iva: <input type="text" name="keyword"
-				id="keyword" size="50" th:value="${keyword}" required /> 
-				&nbsp; 
-				<input type="submit" value="Search" /> 
+			    Immetti la tua partita Iva: <input type="text" name="keyword" id="keyword" size="40" th:value="${keyword}"  class="button_active" required /> 
+				<input type="submit" value="Search"  class="button_active" /> 
 		</form>
 		<br> 
 		<br>
-		<table border="2">
+		<table>
 			<thead>
 				<tr>
 					<th>Azienda ID</th>
@@ -40,24 +58,31 @@
 			  <td th:hidden="${azienda.pIva}"></td>
 			  <td th:hidden="${azienda.ragioneSociale}"></td>
 
-		<script type="text/javascript">
-				function somma() {
-					var n1 = parseInt(document.getElementById('importoDeposito').value, 10);
-					var n2 = parseInt(document.getElementById('saldoTemp').value, 10);
-					var n3 =n1+n2;
-					document.getElementById('saldo').innerHTML ="Il nuovo saldo "+n3;
-				}
-		</script>
-
+	
 		<form action="#" th:action="@{/inserimento_deposito_azienda}" th:object="${azienda}" method="post">
-			  <input type="hidden" th:field="*{conto.idConto}" /> 
-			  <input type="hidden" th:field="*{conto.dataApertura}" />
-			  Il tuo saldo attuale: <input type="number" id="saldoTemp" th:field="*{conto.saldo}"/>
-			  Inserisci l'importo del deposito: <input type="number" name="importo" id="importoDeposito" size="50" th:value="${importo}" required  />
+			  <input type="hidden" th:field="*{conto.idConto}"  class="button_active" /> 
+			  <input type="hidden" th:field="*{conto.dataApertura}"  class="button_active" />
+			  Il tuo saldo attuale: <input type="number" id="saldoTemp" th:field="*{conto.saldo}" class="button_active"/>
+			  <br>
+			  Inserisci l'importo del deposito: <input type="number" name="importo" id="importoDeposito" size="40" th:value="${importo}"  class="button_active" required  />
 			  <p id="saldo"></p>
-			  <input type="button" value="deposita" id="btnSomma" onclick="somma()"  /> 
-			  <button type="submit">conferma</button>
+			  <input type="button" value="deposita" id="btnSomma" onclick="somma()"   class="button_active" /> 
+			  <button type="submit" class="button_active" >conferma</button>
 		 </form>
 		 </tr>
+		</div>
+	</div>
+
+
+
+		 <script type="text/javascript">
+			function somma() {
+				var n1 = parseInt(document.getElementById('importoDeposito').value, 10);
+				var n2 = parseInt(document.getElementById('saldoTemp').value, 10);
+				var n3 =n1+n2;
+				document.getElementById('saldo').innerHTML ="Il nuovo saldo "+n3;
+			}
+	</script>
+
  </body>
 </html>
