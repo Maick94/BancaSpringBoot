@@ -44,6 +44,7 @@
 					<th>Azienda ID</th>
 					<th>Partita Iva</th>
 					<th>Ragione Sociale</th>
+					<th>Saldo</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -51,6 +52,7 @@
 					<td th:text="${azienda.idAzienda}"></td>
 					<td th:text="${azienda.pIva}"></td>
 					<td th:text="${azienda.ragioneSociale}"></td>
+					<td th:text="${azienda.conto.saldo}"></td>
 				</tr>
 			</tbody>
 		</table>

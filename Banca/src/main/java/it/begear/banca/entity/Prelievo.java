@@ -17,7 +17,7 @@ public class Prelievo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idprelievo")
-	private String idPrelievo;
+	private int idPrelievo;
 	@Column(name = "quantita")
 	private int quantita;
 	@Column(name = "data")
@@ -36,7 +36,7 @@ public class Prelievo {
 
 	
 
-	public Prelievo(String idPrelievo, int quantita, String data, int totale, Conto conto) {
+	public Prelievo(int idPrelievo, int quantita, String data, int totale, Conto conto) {
 		super();
 		this.idPrelievo = idPrelievo;
 		this.quantita = quantita;
@@ -46,7 +46,7 @@ public class Prelievo {
 	}
 	
 	
-	public Prelievo(String idPrelievo, int quantita, String data, int totale) {
+	public Prelievo(int idPrelievo, int quantita, String data, int totale) {
 		super();
 		this.idPrelievo = idPrelievo;
 		this.quantita = quantita;
@@ -63,12 +63,12 @@ public class Prelievo {
 	}
 	
 	
-	public String getIdPrelievo() {
+	public int getIdPrelievo() {
 		return idPrelievo;
 	}
 
 
-	public void setIdPrelievo(String idPrelievo) {
+	public void setIdPrelievo(int idPrelievo) {
 		this.idPrelievo = idPrelievo;
 	}
 

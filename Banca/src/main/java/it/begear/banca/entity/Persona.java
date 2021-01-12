@@ -52,6 +52,15 @@ public class Persona {
 		this.dataNascita = dataNascita;
 		this.conto = conto;
 	}
+	
+	public Persona(String cf, String nome, String cognome, String dataNascita, Conto conto) {
+		super();
+		this.cf = cf;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.dataNascita = dataNascita;
+		this.conto = conto;
+	}
 
 	public int getIdPersona() {
 		return idPersona;

@@ -18,7 +18,7 @@ public class Deposito {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "iddeposito")
-	private String idDeposito;
+	private int idDeposito;
 	@Column(name = "quantita")
 	private int quantita;
 	@Column(name = "data")
@@ -38,7 +38,7 @@ public class Deposito {
 
 	
 
-	public Deposito(String idDeposito, int quantita, String data, int totale, Conto conto) {
+	public Deposito(int idDeposito, int quantita, String data, int totale, Conto conto) {
 		super();
 		this.idDeposito = idDeposito;
 		this.quantita = quantita;
@@ -47,7 +47,7 @@ public class Deposito {
 		this.conto = conto;
 	}
 	
-	public Deposito(String idDeposito, int quantita, String data, int totale) {
+	public Deposito(int idDeposito, int quantita, String data, int totale) {
 		super();
 		this.idDeposito = idDeposito;
 		this.quantita = quantita;
@@ -69,11 +69,11 @@ public class Deposito {
 
 
 
-	public String getIdDeposito() {
+	public int getIdDeposito() {
 		return idDeposito;
 	}
 
-	public void setIdDeposito(String idDeposito) {
+	public void setIdDeposito(int idDeposito) {
 		this.idDeposito = idDeposito;
 	}
 

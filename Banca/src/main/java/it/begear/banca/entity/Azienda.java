@@ -38,6 +38,13 @@ public class Azienda{
 		this.conto = conto;
 	}
 
+	public Azienda(String pIva, String ragioneSociale, Conto conto) {
+		super();
+		this.pIva = pIva;
+		this.ragioneSociale = ragioneSociale;
+		this.conto = conto;
+	}
+	
 
 	public int getIdAzienda() {
 		return idAzienda;
