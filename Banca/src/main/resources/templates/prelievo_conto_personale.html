@@ -45,7 +45,7 @@
 		<h1>Prelievo Persona</h1>
 		<form th:action="@{/prelievo_persona}" method="get">
 			    Immetti il codice fiscale: <input type="text" name="keyword"
-				id="keyword" size="40" th:value="${keyword}"  class="button_active" required /> 
+				id="keyword" size="40" th:value="${keyword}"  class="button_active" minlength="16" maxlength="16" required /> 
 				&nbsp; 
 				<input type="submit" value="Search"  class="button_active" /> 
 		</form>
