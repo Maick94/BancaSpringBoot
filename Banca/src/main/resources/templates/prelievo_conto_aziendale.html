@@ -45,7 +45,7 @@
 		<h1>Prelievo Aziendale</h1>
 		<form th:action="@{/prelievo_azienda}" method="get">
 				Immetti la tua partita Iva: 
-				<input type="text" name="keyword" id="keyword" size="40" th:value="${keyword}" class="button_active" required /> 
+				<input type="text" name="keyword" id="keyword" size="40" th:value="${keyword}" class="button_active" minlength="11" maxlength="11" required /> 
 				<input type="submit" value="Search" class="button_active"/> 
 		</form>
 		<br> 
