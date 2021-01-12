@@ -1,5 +1,4 @@
 package it.begear.banca.controller;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -27,12 +26,9 @@ import it.begear.banca.service.DepositoService;
 import it.begear.banca.service.PersonaService;
 import it.begear.banca.service.PrelievoService;
 
-
-
 @Controller
 public class AppController {
 	
-
 	@Autowired
 	PersonaService personaService;
 	@Autowired
@@ -43,7 +39,6 @@ public class AppController {
     DepositoService depositoService;
 	@Autowired
     PrelievoService prelievoService;
-	
 	
 	@RequestMapping("/")
 	public String viewHomePage() {
