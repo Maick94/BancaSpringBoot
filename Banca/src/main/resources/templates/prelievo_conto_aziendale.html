@@ -79,7 +79,7 @@
 		<form action="#" th:action="@{/inserimento_prelievo_azienda}" th:object="${azienda}" method="post">
 			  <input type="hidden" class="button_active" th:field="*{conto.idConto}" /> 
 			  <input type="hidden" class="button_active" th:field="*{conto.dataApertura}" /><br>
-			  Il tuo saldo attuale: <input type="number" id="saldoTemp" class="button_active" th:field="*{conto.saldo}"/><br><br>
+			  Il tuo saldo attuale: <input type="number" id="saldoTemp" class="button_active" th:field="*{conto.saldo}" readonly/><br><br>
 			  Inserisci l'importo del prelievo: <input type="number" name="importo" id="importoPrelievo" size="40" class="button_active" th:value="${importo}" required  />
 			  <p id="saldo"></p>
 			  <input type="button" value="prelievo" id="btnAddizione" onclick="addizione()"  class="button_active"/> 

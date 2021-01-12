@@ -72,9 +72,9 @@
 		<form action="#" th:action="@{/inserimento_deposito_azienda}" th:object="${azienda}" method="post">
 			  <input type="hidden" th:field="*{conto.idConto}"  class="button_active" /> 
 			  <input type="hidden" th:field="*{conto.dataApertura}"  class="button_active" />
-			  Il tuo saldo attuale: <input type="number" id="saldoTemp" th:field="*{conto.saldo}" class="button_active"/>
+			  Il tuo saldo attuale: <input type="number" id="saldoTemp" th:field="*{conto.saldo}" class="button_active" readonly/>
 			  <br>
-			  Inserisci l'importo del deposito: <input type="number" name="importo" id="importoDeposito" size="40" th:value="${importo}"  class="button_active" required  />
+			  Inserisci l'importo del deposito: <input type="number" name="importo" id="importoDeposito" size="40" min="0" th:value="${importo}"  class="button_active" required  />
 			  <p id="saldo"></p>
 			  <input type="button" value="deposita" id="btnSomma" onclick="somma()"   class="button_active" /> 
 			  <button type="submit" class="button_active" >conferma</button>

@@ -1,5 +1,4 @@
 package it.begear.banca.entity;
-
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
@@ -15,7 +14,6 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.OneToOne;
-
 
 @Entity
 @Table(name = "persona")
@@ -36,13 +34,8 @@ public class Persona {
     @JoinColumn(name = "idconto", nullable = false)
     private Conto conto;
 	
-	
-	
-	
 	public Persona () {}
 
-
-	
 	public Persona(int idPersona, String cf, String nome, String cognome, String dataNascita, Conto conto) {
 		super();
 		this.idPersona = idPersona;

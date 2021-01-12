@@ -79,7 +79,7 @@
 		<form action="#" th:action="@{/inserimento_prelievo_persona}" th:object="${persona}" method="post">
 			  <input type="hidden" th:field="*{conto.idConto}"  class="button_active" /> 
 			  <input type="hidden" th:field="*{conto.dataApertura}"  class="button_active" />
-			  Il tuo saldo attuale: <input type="number" id="saldoTemp" th:field="*{conto.saldo}" class="button_active" />
+			  Il tuo saldo attuale: <input type="number" id="saldoTemp" th:field="*{conto.saldo}" class="button_active" readonly/>
 			  <br>
 			  Inserisci l'importo del prelievo massimo il 30% della media dei tuoi depositi <td th:text="${val}"></td> 
 			  <input type="number" name="importo" id="importoPrelievo" size="40" th:value="${importo}" required  min="0" th:max="${val}" class="button_active" />

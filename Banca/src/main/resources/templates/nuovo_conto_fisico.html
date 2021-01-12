@@ -36,30 +36,22 @@
 				<table cellpadding=10>
 					<tr>
 						<td>Codice fiscale:</td>
-						<td><input type="text" th:field="*{cf}" style="display: block" class="button_active" minlength="16" maxlength="16"/>
+						<td><input type="text" th:field="*{cf}" style="display: block" class="button_active" minlength="16" maxlength="16" required/>
 						<td>
 						<td>Nome:</td>
-						<td><input type="text" th:field="*{nome}" style="display: block" class="button_active "/>
+						<td><input type="text" th:field="*{nome}" style="display: block" class="button_active " required/>
 						<td>
 						<td>Cognome</td>
-						<td><input type="text" th:field="*{cognome}" style="display: block" class="button_active "/>
+						<td><input type="text" th:field="*{cognome}" style="display: block" class="button_active " required/>
 						<td>
 						<td>Data di nascita</td>
-						<td><input type="text" th:field="*{dataNascita}" style="display: block" class="button_active "/>
+						<td><input type="text" th:field="*{dataNascita}" style="display: block" class="button_active " required/>
 						<td>
 						<tr>
 						<td colspan="2"><button type="submit" value="clicca qui" style="margin-left: 10vw;" class="button button_active">SALVA</button></td>
 				</table>
-				
 		</form>
 		</div>
 	</div>
-
-
-
-
-
-
-
 </body>
 </html>
